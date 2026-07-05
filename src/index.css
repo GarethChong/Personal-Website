@@ -1,30 +1,184 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-@import url('https://api.fontshare.com/v2/css?f[]=melodrama@400,700&f[]=switzer@400,500,600&display=swap');
 
+/* no root to support full tailwind 4 functionalities */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-desk: var(--desk);
-  --color-wall: var(--wall);
-  --color-glow: var(--glow);
-}
+  --color-foreground: #36230d;
+  --color-desk: #d9b48f;
+  --color-wall: #e8e4c9;
+  --color-glow: #ffffff;
 
-:root {
---background: #0A0A14;
-
---foreground: rgba(235,235,220,0.8);
-
---desk: #F7F5F0;
---wall: #fffcbe;
-
---glow: #ffffff;
+  --font-display: 'Melodrama', serif;
+  --font-body: 'Switzer', sans-serif;
 }
 
 @layer base {
   body {
-    @apply bg-wall text-foreground;
-    font-family: 'Inter', sans-serif;
+    background-color: theme(--color-wall);
+    font-family: theme(--font-body);
+    margin: 0;
+    overflow: hidden;
   }
+}
+
+/* ── Desk perspective ── */
+.desk-scene {
+  /* sets up 3d camera, perspective controls the depth effect (higher = moresubtle) and origin moves vanishing points slightly above center */
+  perspective: 1200px;
+  perspective-origin: 50% 30%;
+}
+
+.desk-surface {
+  /* actual desk, tilts 12 degreees from the top edge, transfomrm style ensures all children present will exist in the tilted 3d space */
+  transform: rotateX(12deg);
+  transform-style: preserve-3d;
+  transform-origin: center top;
+  background-color: var(--color-desk);
+  background-image:
+    linear-gradient(0deg,
+      rgba(120, 80, 45, 0.06) 0px,
+      transparent 3px,
+      transparent 45px,
+      rgba(120, 80, 45, 0.04) 48px,
+      transparent 52px,
+      transparent 110px,
+      rgba(100, 65, 35, 0.07) 114px,
+      transparent 118px,
+      transparent 180px,
+      rgba(120, 80, 45, 0.05) 184px,
+      transparent 188px,
+      transparent 260px),
+    linear-gradient(180deg,
+      rgba(200, 160, 110, 0.15) 0%,
+      transparent 40%,
+      transparent 60%,
+      rgba(100, 65, 35, 0.1) 100%);
+  background-size: 100% 260px, 100% 100%;
+}
+
+/* ── Wall perspective ── */
+.wall-surface {
+  background-color: var(--color-wall);
+  background-image:
+    radial-gradient(ellipse at 50% 0%,
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 60%),
+    linear-gradient(180deg,
+      rgba(0, 0, 0, 0.02) 0%,
+      transparent 50%);
+}
+
+/* ── Object interactions ── */
+.desk-object {
+  /* filter to add a shadow effect, and transition so hover feels fluid */
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.2s ease;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.18));
+  /* drop shadow instead of box shadow so it follows the image shadow */
+}
+
+.group:hover .desk-object {
+  /* lifes the object slightly and scales it up, white glow shows the object is clickable */
+  filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.55)) drop-shadow(0 6px 18px rgba(0, 0, 0, 0.25));
+  /* work together to make the object feel real when its lifted */
+  transform: translateY(-3px) scale(1.03);
+}
+
+/* ── Must-click pulse ── */
+@keyframes pulse-ring {
+
+  /* defines a repeating animation for more important objects */
+  0% {
+    box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.35);
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0px rgba(255, 255, 255, 0);
+  }
+}
+
+.must-click {
+  animation: pulse-ring 2.4s ease-out infinite;
+  border-radius: 12px;
+}
+
+/* ── Modal entrance ── */
+@keyframes modal-in {
+
+  /* short modal entrance */
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-overlay {
+  animation: modal-in 0.25s ease forwards;
+  transform-origin: var(--origin-x, 50%) var(--origin-y, 50%);
+}
+
+/* ── Modal ── */
+.modal-bg {
+  background-color: var(--color-desk);
+  background-image:
+    linear-gradient(0deg,
+      rgba(120, 80, 45, 0.06) 0px,
+      transparent 3px,
+      transparent 45px,
+      rgba(120, 80, 45, 0.04) 48px,
+      transparent 52px,
+      transparent 110px,
+      rgba(100, 65, 35, 0.07) 114px,
+      transparent 118px,
+      transparent 180px,
+      rgba(120, 80, 45, 0.05) 184px,
+      transparent 188px,
+      transparent 260px),
+    linear-gradient(180deg,
+      rgba(200, 160, 110, 0.15) 0%,
+      transparent 40%,
+      transparent 60%,
+      rgba(100, 65, 35, 0.1) 100%);
+  background-size: 100% 260px, 100% 100%;
+}
+
+.modal-content-bg {
+  background-color: #e8e4c9;
+  color: #2a2820;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  max-width: 80vw;
+  max-height: 78vh;
+  overflow: hidden;
+}
+
+.modal-content-inner {
+  max-height: 78vh;
+  overflow-y: auto;
+  padding: 3rem 3.5rem;
+}
+
+/* ── Modal Exit ── */
+@keyframes beckon-left {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-3px);
+  }
+}
+
+.group:hover .beckon {
+  animation: beckon-left 1s ease-in-out infinite;
 }
