@@ -11,7 +11,7 @@ function Cards({ onClick }) {
             style={{ transform: 'rotate(40deg)' }}
             onClick={() => onClick(getClickOrigin("cards", myRef, onClick))}
         >
-            <img src={cardsImg} className="w-full desk-object" />
+            <img src={cardsImg} className="w-full desk-object shadow-strong" />
         </div>
     )
 }

@@ -11,7 +11,7 @@ function TennisBall({ onClick }) {
             style={{ transform: 'rotate(100deg)' }}
             onClick={() => onClick(getClickOrigin("tennisball", myRef, onClick))}
         >
-            <img src={tennisBallImg} className="w-full desk-object" />
+            <img src={tennisBallImg} className="w-full desk-object shadow-strong" />
         </div>
     )
 }
