@@ -11,7 +11,7 @@ function CallSignPatch({ onClick }) {
             style={{ transform: 'rotate(250deg)' }}
             onClick={() => onClick(getClickOrigin("patch", myRef, onClick))}
         >
-            <img src={patchImg} className="w-full desk-object" />
+            <img src={patchImg} className="w-full desk-object shadow-strong" />
         </div>
     )
 }

@@ -37,13 +37,13 @@ function Modal({ modal, setModal }) {
                                 <p className={description}>{project.description}</p>
                                 <div className="flex flex-row gap-3 py-2">
                                     {project.video &&
-                                        <a href={project.video} target="_blank" className={Button}>Watch Demo</a>
+                                        <a href={project.video} target="_blank" className={redirectButton}>Watch Demo</a>
                                     }
                                     {project.demo &&
-                                        <a href={project.demo} target="_blank" className={Button}>Try on Vercel</a>
+                                        <a href={project.demo} target="_blank" className={redirectButton}>Try on Vercel</a>
                                     }
                                     {project.github &&
-                                        <a href={project.github} target="_blank" className={Button}>View on GitHub</a>
+                                        <a href={project.github} target="_blank" className={redirectButton}>View on GitHub</a>
                                     }
                                 </div>
                             </div>
@@ -71,7 +71,7 @@ function Modal({ modal, setModal }) {
             case "photo":
                 return (
                     <>
-                        <p className={title}>My Favourite Travel Destination</p>
+                        <p className={title}>Travels</p>
                         <div className="flex flex-row justify-between items-center">
                             <img src={tokyoImg} className="px-3 py-4 w-[15vw] block mx-auto"></img>
                             <p className={description}>My favourite country to visit is Japan — a country rich in culture and history. Having grown up consuming a lot of Japanese media, travelling there felt surreal. Indulging in local delights, walking the city streets at night, and exploring the outskirts with their quiet nature and uneven pavements all made for unforgettable memories. One of my favourite shots from my trips is a sunset over Tokyo, the light catching the city just right as evening set in. Great deals at Japan's department stores are also a rare find in today's economy, cementing it as my favourite country to visit.</p>
@@ -118,7 +118,7 @@ function Modal({ modal, setModal }) {
                             {
                                 copied === "email"
                                     ? <p className={namecardBase}>Copied!</p>
-                                    : <button className={Button} onClick={() => copy("e1528294@u.nus.edu", "email")}>Copy Email</button>
+                                    : <button className={copyButton} onClick={() => copy("e1528294@u.nus.edu", "email")}>Copy Email</button>
                             }
                         </div>
                         <div className="flex flex-row justify-between items-center">
@@ -126,7 +126,7 @@ function Modal({ modal, setModal }) {
                             {
                                 copied === "linkedin"
                                     ? <p className={namecardBase}>Copied!</p>
-                                    : <button className={Button} onClick={() => copy("www.linkedin.com/in/gareth-chong-05754b288", "linkedin")}>Copy LinkedIn</button>
+                                    : <button className={copyButton} onClick={() => copy("www.linkedin.com/in/gareth-chong-05754b288", "linkedin")}>Copy LinkedIn</button>
                             }
                         </div>
                     </div>
@@ -134,21 +134,21 @@ function Modal({ modal, setModal }) {
                 : modal.id === "resume"
                     ? <div className="flex flex-col items-center gap-2 group">
                         <img src={resumeImg} className="w-[40vw]" />
-                        <a className={`${downloadButton} px-4 py-2 desk-object`}>
+                        <a className={`${downloadButton} px-4 py-2`}>
                             Download Resume
                         </a>
                     </div>
                     : modal.id === "postIts"
                         ? <div className="desk-object flex flex-row justify-between gap-[2vw] ">
-                            <div className="w-[20vw] h-[20vw] bg-pink-300">
+                            <div className="w-[21vw] h-[21vw] bg-pink-300">
                                 <p className={`${postItTitle}`}>Get an internship!!!</p>
                                 <p className={`${postItdescription}`}>Work hard for a summer internship in 2027 (May 2027 - Aug 2027)</p>
                             </div>
-                            <div className="w-[20vw] h-[20vw] bg-yellow-200">
+                            <div className="w-[21vw] h-[21vw] bg-yellow-200">
                                 <p className={`${postItTitle}`}>Grow fitter and stronger</p>
                                 <p className={`${postItdescription}`}>Achieve more mileage and higher weight lifts</p>
                             </div>
-                            <div className="w-[20vw] h-[20vw] bg-green-300">
+                            <div className="w-[21vw] h-[21vw] bg-green-300">
                                 <p className={`${postItTitle}`}>Give back to the community</p>
                                 <p className={`${postItdescription}`}>Join a volunteering project to give back and serve the community</p>
                             </div>
@@ -162,11 +162,12 @@ function Modal({ modal, setModal }) {
         : null
 }
 
-const downloadButton = "border border-[#36230d] text-[#36230d] hover:bg-[#36230d] hover:text-[#e8e4c9] transition-colors duration-300"
+const downloadButton = "font-body text-[0.9vw] h-[2.5vw] w-[10vw] text-black font-bold border border-black hover:text-[#34962c] hover:border-[#34962c] transition-colors duration-300 whitespace-nowrap flex justify-center"
 const namecardBase = "font-body text-[1vw] text-black font-bold"
-const Button = "font-body text-[0.9vw] h-[1.5vw] w-[7vw] text-black font-bold border border-black px-2 hover:text-[#8c612b] hover:border-[#8c612b] transition-colors duration-300 whitespace-nowrap flex justify-center"
-const postItTitle = "font-display text-[2.1vw] text-black font-bold p-2"
-const postItdescription = "font-body text-[0.9vw] p-1.5"
+const redirectButton = "font-body text-[0.9vw] h-[1.5vw] w-[7vw] text-black font-bold border border-black px-2 hover:text-[#8c612b] hover:border-[#8c612b] transition-colors duration-300 whitespace-nowrap flex justify-center"
+const copyButton= "font-body text-[0.9vw] h-[1.5vw] w-[7vw] text-black font-bold border border-black px-2 hover:text-[#0A66C2] hover:border-[#0A66C2] transition-colors duration-300 whitespace-nowrap flex justify-center"
+const postItTitle = "font-display text-[2.3vw] text-black font-bold px-2 leading-[1.05]"
+const postItdescription = "font-body text-[1.1vw] px-2 py-3"
 const title = "font-display text-[3vw] font-bold flex justify-center"
 const description = "font-body text-[1.2vw] self-strecth text-left px-3 py-2"
 

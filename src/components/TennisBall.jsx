@@ -7,8 +7,8 @@ function TennisBall({ onClick }) {
 
     return (
         <div ref={myRef}
-            className="absolute w-[7vw] top-[27%] right-[5%] cursor-pointer group"
-            style={{ transform: 'rotate(100deg)' }}
+            className="absolute w-[10vw] top-[27%] right-[5%] cursor-pointer group"
+            style={{ transform: 'rotate(40deg)' }}
             onClick={() => onClick(getClickOrigin("tennisball", myRef, onClick))}
         >
             <img src={tennisBallImg} className="w-full desk-object shadow-strong" />

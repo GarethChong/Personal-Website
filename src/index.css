@@ -3,11 +3,11 @@
 /* no root to support full tailwind 4 functionalities */
 @theme inline {
   --color-foreground: #36230d;
-  --color-desk: #d9b48f;
+  --color-desk: #faf7f5;
   --color-wall: #e8e4c9;
   --color-glow: #ffffff;
 
-  --font-display: 'Melodrama', serif;
+  --font-display: 'Erode', serif;
   --font-body: 'Switzer', sans-serif;
 }
 
@@ -33,25 +33,6 @@
   transform-style: preserve-3d;
   transform-origin: center top;
   background-color: var(--color-desk);
-  background-image:
-    linear-gradient(0deg,
-      rgba(120, 80, 45, 0.06) 0px,
-      transparent 3px,
-      transparent 45px,
-      rgba(120, 80, 45, 0.04) 48px,
-      transparent 52px,
-      transparent 110px,
-      rgba(100, 65, 35, 0.07) 114px,
-      transparent 118px,
-      transparent 180px,
-      rgba(120, 80, 45, 0.05) 184px,
-      transparent 188px,
-      transparent 260px),
-    linear-gradient(180deg,
-      rgba(200, 160, 110, 0.15) 0%,
-      transparent 40%,
-      transparent 60%,
-      rgba(100, 65, 35, 0.1) 100%);
   background-size: 100% 260px, 100% 100%;
 }
 
@@ -96,15 +77,15 @@
 
   /* defines a repeating animation for more important objects */
   0% {
-    box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.35);
+    box-shadow: 0 0 0 0px rgba(60, 60, 60, 0.15);
   }
 
   70% {
-    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 10px rgba(60, 60, 60, 0);
   }
 
   100% {
-    box-shadow: 0 0 0 0px rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 0px rgba(60, 60, 60, 0);
   }
 }
 
@@ -136,25 +117,6 @@
 /* ── Modal ── */
 .modal-bg {
   background-color: var(--color-desk);
-  background-image:
-    linear-gradient(0deg,
-      rgba(120, 80, 45, 0.06) 0px,
-      transparent 3px,
-      transparent 45px,
-      rgba(120, 80, 45, 0.04) 48px,
-      transparent 52px,
-      transparent 110px,
-      rgba(100, 65, 35, 0.07) 114px,
-      transparent 118px,
-      transparent 180px,
-      rgba(120, 80, 45, 0.05) 184px,
-      transparent 188px,
-      transparent 260px),
-    linear-gradient(180deg,
-      rgba(200, 160, 110, 0.15) 0%,
-      transparent 40%,
-      transparent 60%,
-      rgba(100, 65, 35, 0.1) 100%);
   background-size: 100% 260px, 100% 100%;
 }
 

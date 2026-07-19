@@ -7,12 +7,12 @@ function Photo({ onClick }) {
 
     return (
         <div ref={myRef}
-            className="absolute w-[16vw] top-[22%] right-[14%] cursor-pointer group"
+            className="absolute w-[8vw] top-[25%] right-[20%] cursor-pointer group"
             style={{ transform: 'rotate(340deg)' }}
             onClick={() => onClick(getClickOrigin("photo", myRef, onClick))}
         >
-            <div className="bg-white p-3 pb-8 shadow-lg inline-block">
-                <img src={tokyoImg} className="w-[full] desk-object" />
+            <div className="bg-white p-2 pb-6 shadow-lg inline-block desk-object">
+                <img src={tokyoImg} className="w-[full]" />
             </div>
         </div>
     )

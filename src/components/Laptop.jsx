@@ -7,7 +7,7 @@ function Laptop({ onClick }) {
 
     return (
         <div ref={myRef} className="absolute w-[35vw] top-[-18%] left-1/2 -translate-x-1/2 cursor-pointer group must-click" onClick={getClickOrigin("laptop", myRef, onClick)}>
-            <img src={laptopImg} className="w-full desk-object" />
+            <img src={laptopImg} className="w-full desk-object shadow-strong" />
         </div>
     )
 }
